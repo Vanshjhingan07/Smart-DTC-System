@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart DTC | Vansh Jhingan</title>
+  <title>Smart DTC System | Vansh Jhingan</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div id="alert-modal" class="modal-overlay">
+  <div id="alert-modal" class="modal-overlay" style="display: none;">
       <div class="modal-content">
           <i id="modal-icon" class="bi bi-info-circle"></i>
-          <h2 id="modal-title">System Message</h2>
+          <h2 id="modal-title">System Alert</h2>
           <p id="modal-message"></p>
-          <button id="modal-close-btn" class="submit-btn">Understood</button>
+          <button id="modal-close-btn" class="submit-btn">Close</button>
       </div>
   </div>
 
   <div id="login-page" class="page">
     <div class="login-container">
-      <div class="logo"><i class="bi bi-bus-front"></i><h1>Smart DTC</h1></div>
+      <div class="logo"><i class="bi bi-bus-front"></i><h1>Smart DTC System</h1></div>
       <div class="login-form">
         <input type="text" id="name" placeholder="Full Name" required>
         <input type="email" id="email" placeholder="Email" required>
@@ -40,7 +40,7 @@
       <h1><i class="bi bi-house-door"></i> Passenger Hub</h1>
       <div class="actions">
         <button id="darkToggle" class="icon-btn"><i class="bi bi-moon-stars-fill"></i></button>
-        <button class="logout-btn"><i class="bi bi-box-arrow-right"></i> Logout</button>
+        <button class="logout-btn">Logout</button>
       </div>
     </header>
     <div class="banner-wrapper"><img src="delhigif.gif" alt="Delhi"></div>
@@ -55,18 +55,20 @@
   <div id="driver-dashboard" class="page">
     <header><h1>Driver Console</h1><button class="logout-btn">Logout</button></header>
     <main class="dashboard-grid">
-      <div class="card" id="start-shift"><i class="bi bi-play-circle"></i><h2>Start Shift</h2></div>
-      <div class="card" id="report-help"><i class="bi bi-exclamation-octagon"></i><h2>Emergency Help</h2></div>
+      <div class="card btn-action" data-type="shift-start"><i class="bi bi-play-circle"></i><h2>Start Shift</h2></div>
+      <div class="card btn-action" data-type="emergency"><i class="bi bi-exclamation-octagon"></i><h2>Emergency Help</h2></div>
       <div class="card"><i class="bi bi-people"></i><h2 id="dr-pax">12</h2><div class="btn-row"><button id="p-min">-</button><button id="p-plus">+</button></div></div>
-      <div class="card" id="end-shift"><i class="bi bi-stop-circle"></i><h2>End Shift</h2></div>
+      <div class="card btn-action" data-type="shift-end"><i class="bi bi-stop-circle"></i><h2>End Shift</h2></div>
     </main>
   </div>
 
   <div id="admin-dashboard" class="page">
     <header><h1>Admin Panel</h1><button class="logout-btn">Logout</button></header>
     <main class="dashboard-grid">
-      <div class="card" id="view-stats"><i class="bi bi-graph-up"></i><h2>Usage Stats</h2></div>
-      <div class="card" id="manage-crew"><i class="bi bi-person-badge"></i><h2>Crew List</h2></div>
+      <div class="card btn-action" data-type="stats"><i class="bi bi-graph-up"></i><h2>Usage Stats</h2></div>
+      <div class="card btn-action" data-type="crew"><i class="bi bi-person-badge"></i><h2>Crew List</h2></div>
+      <div class="card btn-action" data-type="routes"><i class="bi bi-map"></i><h2>Route GIS</h2></div>
+      <div class="card btn-action" data-type="alerts"><i class="bi bi-bell"></i><h2>System Alerts</h2></div>
     </main>
   </div>
 
@@ -74,34 +76,31 @@
     <header><h1>Buy Ticket</h1><button class="back-btn" data-target="passenger-dashboard">Back</button></header>
     <main class="form-view">
       <div class="content-box">
-        <div class="type-sel">
-          <input type="radio" name="bt" id="ac" value="ac" checked><label for="ac">AC</label>
-          <input type="radio" name="bt" id="nac" value="nonAc"><label for="nac">Non-AC</label>
-        </div>
-        <select id="r-sel"><option value="">-- Route --</option></select>
+        <select id="r-sel"><option value="">-- Select Route --</option></select>
         <select id="s-sel" disabled></select><select id="e-sel" disabled></select>
-        <input type="number" id="t-num" value="1" min="1">
         <div id="fare-txt">Fare: ₹0</div>
-        <button id="book-btn" class="submit-btn">Generate Ticket</button>
+        <button id="book-btn" class="submit-btn">Confirm Ticket</button>
       </div>
     </main>
   </div>
 
   <div id="planner-page" class="page">
     <header><h1>Planner</h1><button class="back-btn" data-target="passenger-dashboard">Back</button></header>
-    <main class="form-view">
-      <div class="content-box">
-        <select id="plan-s"></select><select id="plan-e"></select>
-        <button id="search-bus" class="submit-btn">Search Routes</button>
-        <div id="plan-res"></div>
-      </div>
-    </main>
+    <main class="form-view"><div class="content-box"><select id="plan-s"></select><select id="plan-e"></select><button id="search-bus" class="submit-btn">Search</button><div id="plan-res"></div></div></main>
   </div>
 
-  <div id="tracking-page" class="page"><header><h1>GPS</h1><button class="back-btn" data-target="passenger-dashboard">Back</button></header><main class="form-view"><div class="content-box"><i class="bi bi-geo-alt-fill" style="font-size:3rem; color:var(--primary)"></i><p id="track-msg">Scanning GPS...</p></div></main></div>
+  <div id="crowd-page" class="page">
+    <header><h1>Crowd</h1><button class="back-btn" data-target="passenger-dashboard">Back</button></header>
+    <main class="form-view"><div class="content-box"><h3>Live Passengers</h3><div id="pax-val" class="stat">12</div></div></main>
+  </div>
+
+  <div id="tracking-page" class="page">
+    <header><h1>GPS Tracking</h1><button class="back-btn" data-target="passenger-dashboard">Back</button></header>
+    <main class="form-view"><div class="content-box"><i class="bi bi-geo-alt-fill" style="font-size:3rem; color:var(--primary)"></i><p id="track-msg">Tracking Active...</p></div></main>
+  </div>
 
   <footer class="app-footer">
-    <p>Developed by **Vansh Jhingan** | Portfolio 2026</p>
+    <p>Developed by **Vansh Jhingan**</p>
   </footer>
 
   <script src="script.js" defer></script>
