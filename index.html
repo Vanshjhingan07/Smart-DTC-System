@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart DTC System 🇮🇳</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="alert-modal" class="modal-overlay">
+      <div class="modal-content">
+          <i id="modal-icon" class="bi bi-info-circle"></i>
+          <h2 id="modal-title">Alert</h2>
+          <p id="modal-message">This is a message.</p>
+          <button id="modal-close-btn" class="submit-btn">Okay</button>
+      </div>
+  </div>
+
+  <div id="login-page" class="page">
+    <div class="login-container">
+      <div class="logo">
+        <i class="bi bi-bus-front"></i>
+        <h1>Smart DTC System</h1>
+      </div>
+      <p class="login-subtitle">Please enter your details to continue</p>
+      <div class="login-form">
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email Address" required>
+        <input type="tel" id="phone" placeholder="Phone Number" required>
+      </div>
+      <div class="login-option">
+        <button class="login-trigger" data-target="driver-dashboard"><i class="bi bi-person-steering"></i> Driver/Conductor</button>
+        <button class="login-trigger" data-target="passenger-dashboard"><i class="bi bi-people"></i> Passenger</button>
+        <button class="login-trigger" data-target="admin-dashboard"><i class="bi bi-gear-wide-connected"></i> Admin</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="admin-dashboard" class="page">
+    <header>
+      <h1><i class="bi bi-gear-wide-connected"></i> Admin Dashboard</h1><button class="logout-btn"><i class="bi bi-box-arrow-right"></i> Logout</button>
+    </header>
+    <main>
+      <div class="card clickable" id="admin-scheduling-btn"><div class="icon"><i class="bi bi-calendar-week"></i></div><h2>Bus Scheduling</h2><p>Assign linked/unlinked duties</p></div>
+      <div class="card clickable" id="admin-crew-btn"><div class="icon"><i class="bi bi-person-badge"></i></div><h2>Crew Management</h2><p>View crew and assignments</p></div>
+      <div class="card clickable" id="admin-route-btn"><div class="icon"><i class="bi bi-map"></i></div><h2>Route Management</h2><p>View & plan bus routes</p></div>
+      <div class="card clickable" id="admin-reports-btn"><div class="icon"><i class="bi bi-graph-up-arrow"></i></div><h2>Reports & Analytics</h2><p>View performance reports</p></div>
+    </main>
+  </div>
+
+  <div id="passenger-dashboard" class="page">
+    <header>
+      <h1><i class="bi bi-house-door"></i> Passenger Dashboard</h1>
+      <div class="actions">
+        <button id="darkToggle" class="icon-btn"><i class="bi bi-moon-stars-fill"></i></button>
+        <button class="logout-btn"><i class="bi bi-box-arrow-right"></i> Logout</button>
+      </div>
+    </header>
+    <main>
+      <div class="prime-card"><img src="delhigif.gif" alt="Delhi Timeline GIF"></div>
+      <div class="card clickable" id="purchase-ticket-btn"><div class="icon"><i class="bi bi-ticket-perforated"></i></div><h2>Purchase Tickets</h2><p>Buy your tickets online</p></div>
+      <div class="card clickable" id="passenger-tracking-btn"><div class="icon"><i class="bi bi-broadcast-pin"></i></div><h2>Live Tracking</h2><p>Track your bus in real-time</p></div>
+      <div class="card clickable" id="passenger-crowd-btn"><div class="icon"><i class="bi bi-people"></i></div><h2>Crowd Capacity</h2><p>Check seat availability</p></div>
+      <div class="card clickable" id="passenger-route-planner-btn"><div class="icon"><i class="bi bi-sign-turn-right"></i></div><h2>Route Planner</h2><p>Plan your journey with ease</p></div>
+    </main>
+  </div>
+
+  <div id="ticket-page" class="page">
+    <header><h1><i class="bi bi-ticket-perforated"></i> Online Ticket Purchase</h1><button class="back-btn" data-target="passenger-dashboard"><i class="bi bi-arrow-left"></i> Back</button></header>
+    <main>
+        <div class="ticket-form-container">
+            <h2>Calculate Your Fare</h2>
+            <form id="ticket-form">
+                <label for="bus-type"><i class="bi bi-bus-front"></i> Select Bus Type:</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="type-ac" name="bus-type" value="ac" checked>
+                        <label for="type-ac">AC Bus</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="type-nonac" name="bus-type" value="nonAc">
+                        <label for="type-nonac">Non-AC Bus</label>
+                    </div>
+                </div>
+                <label for="route-select"><i class="bi bi-map"></i> Select Your Bus Route:</label>
+                <select id="route-select" name="route"><option value="">-- Select a Route --</option></select>
+                <label for="start-stop-select"><i class="bi bi-geo-alt"></i> Select Your Boarding Stop:</label>
+                <select id="start-stop-select" name="start_stop" disabled><option>-- Select Start Stop --</option></select>
+                <label for="end-stop-select"><i class="bi bi-geo"></i> Select Your Destination Stop:</label>
+                <select id="end-stop-select" name="end_stop" disabled><option>-- Select End Stop --</option></select>
+                <label for="ticket-count"><i class="bi bi-person"></i> Number of Tickets:</label>
+                <input type="number" id="ticket-count" name="count" value="1" min="1" max="10">
+                <div id="fare-display">Total Fare: ₹0</div>
+                <button type="submit" class="submit-btn"><i class="bi bi-credit-card"></i> Proceed to Payment</button>
+            </form>
+        </div>
+    </main>
+  </div>
+
+  <div id="driver-dashboard" class="page">
+    <header><h1><i class="bi bi-person-steering"></i> Driver/Conductor View</h1><button class="logout-btn"><i class="bi bi-box-arrow-right"></i> Logout</button></header>
+    <main>
+      <div class="driver-card"><h2>Current Duty</h2><p><b>Bus No:</b> DL1PC1234</p><p id="current-duty-route"><b>Route:</b></p><button id="start-duty-btn" class="success"><i class="bi bi-play-circle"></i> Start Duty</button><button id="end-duty-btn" class="danger"><i class="bi bi-stop-circle"></i> End Duty</button></div>
+      <div class="driver-card"><h2>Next Duty</h2><p><b>Bus No:</b> DL1PC5678</p><p id="next-duty-route"><b>Route:</b></p><p><b>Rest Period:</b> 30 mins</p></div>
+      <div class="driver-card"><h2>Crowd Manager</h2><p>Passengers on board: <span id="passenger-count">12</span></p><div class="button-group"><button id="decrease-pax-btn" class="danger">-</button><button id="increase-pax-btn" class="success">+</button></div></div>
+      <div class="driver-card"><h2>Bus Status</h2><p>Report any issues with the bus.</p><button id="report-issue-btn" class="warning"><i class="bi bi-exclamation-triangle"></i> Report Issue</button></div>
+    </main>
+  </div>
+  
+  <div id="crew-page" class="page"><header><h1><i class="bi bi-person-badge"></i> Crew Management</h1><button class="back-btn" data-target="admin-dashboard"><i class="bi bi-arrow-left"></i> Back</button></header><main><div class="table-container" id="crew-table-container"></div></main></div>
+  <div id="route-planner-page" class="page"><header><h1><i class="bi bi-sign-turn-right"></i> Route Planner</h1><button class="back-btn" data-target="passenger-dashboard"><i class="bi bi-arrow-left"></i> Back</button></header><main><div class="ticket-form-container"><h2>Find Your Bus</h2><form id="route-planner-form"><label for="planner-start-stop"><i class="bi bi-geo-alt"></i> Start Stop:</label><select id="planner-start-stop"></select><label for="planner-end-stop"><i class="bi bi-geo"></i> End Stop:</label><select id="planner-end-stop"></select><button type="submit" class="submit-btn"><i class="bi bi-search"></i> Find Route</button></form><div id="route-results"></div></div></main></div>
+  <div id="crowd-page" class="page"><header><h1><i class="bi bi-people"></i> Crowd Capacity</h1><button class="back-btn" data-target="passenger-dashboard"><i class="bi bi-arrow-left"></i> Back</button></header><main><div class="placeholder crowd-display"><h3>Live Passenger Count on Bus DL1PC1234</h3><p id="live-passenger-count-display">12</p></div></main></div>
+
+  <div id="scheduling-page" class="page"><header><h1><i class="bi bi-calendar-week"></i> Scheduling</h1><button class="back-btn" data-target="admin-dashboard"><i class="bi bi-arrow-left"></i> Back</button></header><main><div class="placeholder">Bus Scheduling Management Interface</div></main></div>
+  <div id="route-page" class="page"><header><h1><i class="bi bi-map"></i> Route Management</h1><button class="back-btn" data-target="admin-dashboard"><i class="bi bi-arrow-left"></i> Back</button></header><main><div class="placeholder">GIS Map and Route Planning Interface</div></main></div>
+  <div id="reports-page" class="page"><header><h1><i class="bi bi-graph-up-arrow"></i> Reports & Analytics</h1><button class="back-btn" data-target="admin-dashboard"><i class="bi bi-arrow-left"></i> Back</button></header><main><div class="placeholder">Performance and Usage Reports Interface</div></main></div>
+  <div id="tracking-page" class="page"><header><h1><i class="bi bi-broadcast-pin"></i> Live Tracking</h1><button class="back-btn" data-target="passenger-dashboard"><i class="bi bi-arrow-left"></i> Back</button></header><main><div class="placeholder">Live Bus Tracking Map Interface</div></main></div>
+  <div id="passenger-schedules-page" class="page"><header><h1><i class="bi bi-clock-history"></i> Bus Schedules</h1><button class="back-btn" data-target="passenger-dashboard"><i class="bi bi-arrow-left"></i> Back</button></header><main><div class="placeholder">Detailed Bus Schedules and Timings</div></main></div>
+  
+  <footer class="app-footer">
+    <p>&copy; 2025 Smart DTC System. All Rights Reserved.</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
