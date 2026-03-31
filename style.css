@@ -1,3 +1,38 @@
+/* --- LOGIN PAGE FIXED DESIGN --- */
+#login-page { 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  min-height: 100vh; 
+  background: var(--bg); 
+}
+
+.login-container { 
+  background: var(--card); 
+  padding: 2.5rem; 
+  border-radius: 20px; 
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+  width: 90%; 
+  max-width: 400px; 
+  text-align: center; 
+  border: 1px solid var(--border);
+}
+
+.login-form input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: block;
+}
+
+.login-option {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
 :root { --primary: #007bff; --bg: #f4f7f6; --card: #fff; --text: #333; }
 body.dark { --bg: #1a1a1a; --card: #252525; --text: #f0f0f0; }
 
