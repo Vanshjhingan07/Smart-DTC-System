@@ -3,11 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart DTC System | Vansh Jhingan</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Smart DTC | Vansh Jhingan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -17,43 +14,25 @@
       <div class="modal-content">
           <i id="modal-icon" class="bi bi-info-circle"></i>
           <h2 id="modal-title">Alert</h2>
-          <p id="modal-message">This is a message.</p>
+          <p id="modal-message"></p>
           <button id="modal-close-btn" class="submit-btn">Okay</button>
       </div>
   </div>
 
   <div id="login-page" class="page">
     <div class="login-container">
-      <div class="logo" style="cursor: pointer;">
-        <i class="bi bi-bus-front"></i>
-        <h1>Smart DTC System</h1>
-      </div>
-      <p class="login-subtitle">Enter professional details to continue</p>
-      <form id="main-login-form" class="login-form">
-        <input type="text" id="name" placeholder="Full Name (e.g., Vansh Jhingan)" required>
-        <input type="email" id="email" placeholder="Professional Email (name@example.com)" required>
-        <input type="tel" id="phone" placeholder="10-Digit Mobile Number" pattern="[6-9]{1}[0-9]{9}" title="Please enter a valid 10-digit Indian mobile number" required>
-        
+      <div class="logo"><i class="bi bi-bus-front"></i><h1>Smart DTC</h1></div>
+      <div class="login-form">
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="tel" id="phone" placeholder="10-Digit Mobile" pattern="[6-9]{1}[0-9]{9}" required>
         <div class="login-option">
-          <button type="button" class="login-trigger" data-target="driver-dashboard"><i class="bi bi-person-steering"></i> Driver/Conductor</button>
-          <button type="button" class="login-trigger" data-target="passenger-dashboard"><i class="bi bi-people"></i> Passenger</button>
-          <button type="button" class="login-trigger" data-target="admin-dashboard"><i class="bi bi-gear-wide-connected"></i> Admin</button>
+          <button class="login-trigger" data-target="driver-dashboard">Driver</button>
+          <button class="login-trigger" data-target="passenger-dashboard">Passenger</button>
+          <button class="login-trigger" data-target="admin-dashboard">Admin</button>
         </div>
-      </form>
+      </div>
     </div>
-  </div>
-
-  <div id="admin-dashboard" class="page">
-    <header>
-      <h1><i class="bi bi-gear-wide-connected"></i> Admin Panel</h1>
-      <button class="logout-btn"><i class="bi bi-box-arrow-right"></i> Logout</button>
-    </header>
-    <main>
-      <div class="card clickable" id="admin-scheduling-btn"><div class="icon"><i class="bi bi-calendar-week"></i></div><h2>Bus Scheduling</h2><p>Assign linked/unlinked duties</p></div>
-      <div class="card clickable" id="admin-crew-btn"><div class="icon"><i class="bi bi-person-badge"></i></div><h2>Crew Management</h2><p>View crew assignments</p></div>
-      <div class="card clickable" id="admin-route-btn"><div class="icon"><i class="bi bi-map"></i></div><h2>Route GIS</h2><p>View & plan bus routes</p></div>
-      <div class="card clickable" id="admin-reports-btn"><div class="icon"><i class="bi bi-graph-up-arrow"></i></div><h2>Analytics</h2><p>Performance reports</p></div>
-    </main>
   </div>
 
   <div id="passenger-dashboard" class="page">
@@ -64,61 +43,57 @@
         <button class="logout-btn"><i class="bi bi-box-arrow-right"></i> Logout</button>
       </div>
     </header>
-    <main>
-      <div class="prime-card"><img src="delhigif.gif" alt="Delhi Timeline"></div>
-      <div class="card clickable" id="purchase-ticket-btn"><div class="icon"><i class="bi bi-ticket-perforated"></i></div><h2>Tickets</h2><p>Online fare payment</p></div>
-      <div class="card clickable" id="passenger-tracking-btn"><div class="icon"><i class="bi bi-broadcast-pin"></i></div><h2>Live Tracking</h2><p>Real-time bus GPS</p></div>
-      <div class="card clickable" id="passenger-crowd-btn"><div class="icon"><i class="bi bi-people"></i></div><h2>Crowd Status</h2><p>Check seat availability</p></div>
-      <div class="card clickable" id="passenger-route-planner-btn"><div class="icon"><i class="bi bi-sign-turn-right"></i></div><h2>Route Planner</h2><p>Plan your city commute</p></div>
+    <div class="banner-wrapper"><img src="delhigif.gif" alt="Delhi"></div>
+    <main class="dashboard-grid">
+      <div class="card nav-card" data-page="ticket-page"><i class="bi bi-ticket-perforated"></i><h2>Tickets</h2></div>
+      <div class="card nav-card" data-page="tracking-page"><i class="bi bi-broadcast-pin"></i><h2>Tracking</h2></div>
+      <div class="card nav-card" data-page="crowd-page"><i class="bi bi-people"></i><h2>Crowd</h2></div>
+      <div class="card nav-card" data-page="planner-page"><i class="bi bi-sign-turn-right"></i><h2>Planner</h2></div>
     </main>
   </div>
 
   <div id="ticket-page" class="page">
-    <header><h1>Ticket Purchase</h1><button class="back-btn" data-target="passenger-dashboard"><i class="bi bi-arrow-left"></i> Back</button></header>
-    <main>
-        <div class="ticket-form-container">
-            <h2>Calculate Fare</h2>
-            <form id="ticket-form">
-                <label>Select Bus Type:</label>
-                <div class="radio-group">
-                    <div class="radio-option"><input type="radio" id="type-ac" name="bus-type" value="ac" checked><label for="type-ac">AC</label></div>
-                    <div class="radio-option"><input type="radio" id="type-nonac" name="bus-type" value="nonAc"><label for="type-nonac">Non-AC</label></div>
-                </div>
-                <label>Route:</label>
-                <select id="route-select" name="route"><option value="">-- Select --</option></select>
-                <label>From:</label>
-                <select id="start-stop-select" name="start_stop" disabled></select>
-                <label>To:</label>
-                <select id="end-stop-select" name="end_stop" disabled></select>
-                <label>Tickets:</label>
-                <input type="number" id="ticket-count" value="1" min="1" max="10">
-                <div id="fare-display">Total Fare: ₹0</div>
-                <button type="submit" class="submit-btn"><i class="bi bi-credit-card"></i> Buy Ticket</button>
-            </form>
+    <header><h1>Buy Ticket</h1><button class="back-btn" data-target="passenger-dashboard">Back</button></header>
+    <main class="form-view">
+      <div class="content-box">
+        <div class="type-sel">
+          <input type="radio" name="btype" id="ac" value="ac" checked><label for="ac">AC</label>
+          <input type="radio" name="btype" id="nac" value="nonAc"><label for="nac">Non-AC</label>
         </div>
+        <select id="route-sel"><option value="">-- Route --</option></select>
+        <select id="start-sel" disabled><option>-- Start --</option></select>
+        <select id="end-sel" disabled><option>-- End --</option></select>
+        <input type="number" id="t-count" value="1" min="1">
+        <div id="fare-res">Fare: ₹0</div>
+        <button id="buy-btn" class="submit-btn">Proceed</button>
+      </div>
     </main>
   </div>
 
-  <div id="driver-dashboard" class="page">
-    <header><h1>Driver Console</h1><button class="logout-btn"><i class="bi bi-box-arrow-right"></i> Logout</button></header>
-    <main>
-      <div class="driver-card"><h2>Active Duty</h2><p><b>Bus:</b> DL1PC1234</p><p id="current-duty-route"><b>Route:</b></p><button id="start-duty-btn" class="success">Start Shift</button><button id="end-duty-btn" class="danger">End Shift</button></div>
-      <div class="driver-card"><h2>Crowd Manager</h2><p>On Board: <span id="passenger-count">12</span></p><div class="button-group"><button id="decrease-pax-btn" class="danger">-</button><button id="increase-pax-btn" class="success">+</button></div></div>
-      <div class="driver-card"><h2>Maintenance</h2><p>Report breakdowns</p><button id="report-issue-btn" class="warning">Report Issue</button></div>
+  <div id="planner-page" class="page">
+    <header><h1>Planner</h1><button class="back-btn" data-target="passenger-dashboard">Back</button></header>
+    <main class="form-view">
+      <div class="content-box">
+        <select id="p-start"></select>
+        <select id="p-end"></select>
+        <button id="search-btn" class="submit-btn">Find Bus</button>
+        <div id="p-results"></div>
+      </div>
     </main>
   </div>
-  
+
+  <div id="crowd-page" class="page">
+    <header><h1>Crowd</h1><button class="back-btn" data-target="passenger-dashboard">Back</button></header>
+    <main class="form-view"><div class="content-box"><h3>Live Count</h3><div id="pax-val" class="stat">12</div></div></main>
+  </div>
+
+  <div id="tracking-page" class="page">
+    <header><h1>Live GPS</h1><button class="back-btn" data-target="passenger-dashboard">Back</button></header>
+    <main class="form-view"><div class="content-box"><i class="bi bi-geo-alt"></i><p>Fetching GPS...</p></div></main>
+  </div>
+
   <footer class="app-footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <h3>Smart DTC System</h3>
-        <p>Advanced Transit Solutions for New Delhi.</p>
-      </div>
-      <div class="footer-credits">
-        <p>Developed by **Vansh Jhingan**</p>
-        <p>BCA (Honours) | BVIMR Portfolio Project</p>
-      </div>
-    </div>
+    <p>Developed by **Vansh Jhingan** | BCA BVIMR</p>
   </footer>
 
   <script src="script.js" defer></script>
