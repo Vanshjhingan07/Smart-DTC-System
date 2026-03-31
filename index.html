@@ -13,9 +13,9 @@
   <div id="alert-modal" class="modal-overlay">
       <div class="modal-content">
           <i id="modal-icon" class="bi bi-info-circle"></i>
-          <h2 id="modal-title">Alert</h2>
+          <h2 id="modal-title">System Message</h2>
           <p id="modal-message"></p>
-          <button id="modal-close-btn" class="submit-btn">Okay</button>
+          <button id="modal-close-btn" class="submit-btn">Understood</button>
       </div>
   </div>
 
@@ -27,9 +27,9 @@
         <input type="email" id="email" placeholder="Email" required>
         <input type="tel" id="phone" placeholder="10-Digit Mobile" pattern="[6-9]{1}[0-9]{9}" required>
         <div class="login-option">
-          <button class="login-trigger" data-target="driver-dashboard">Driver</button>
-          <button class="login-trigger" data-target="passenger-dashboard">Passenger</button>
-          <button class="login-trigger" data-target="admin-dashboard">Admin</button>
+          <button class="login-trigger" data-target="driver-dashboard">Driver Console</button>
+          <button class="login-trigger" data-target="passenger-dashboard">Passenger Hub</button>
+          <button class="login-trigger" data-target="admin-dashboard">Admin Panel</button>
         </div>
       </div>
     </div>
@@ -52,20 +52,37 @@
     </main>
   </div>
 
+  <div id="driver-dashboard" class="page">
+    <header><h1>Driver Console</h1><button class="logout-btn">Logout</button></header>
+    <main class="dashboard-grid">
+      <div class="card" id="start-shift"><i class="bi bi-play-circle"></i><h2>Start Shift</h2></div>
+      <div class="card" id="report-help"><i class="bi bi-exclamation-octagon"></i><h2>Emergency Help</h2></div>
+      <div class="card"><i class="bi bi-people"></i><h2 id="dr-pax">12</h2><div class="btn-row"><button id="p-min">-</button><button id="p-plus">+</button></div></div>
+      <div class="card" id="end-shift"><i class="bi bi-stop-circle"></i><h2>End Shift</h2></div>
+    </main>
+  </div>
+
+  <div id="admin-dashboard" class="page">
+    <header><h1>Admin Panel</h1><button class="logout-btn">Logout</button></header>
+    <main class="dashboard-grid">
+      <div class="card" id="view-stats"><i class="bi bi-graph-up"></i><h2>Usage Stats</h2></div>
+      <div class="card" id="manage-crew"><i class="bi bi-person-badge"></i><h2>Crew List</h2></div>
+    </main>
+  </div>
+
   <div id="ticket-page" class="page">
     <header><h1>Buy Ticket</h1><button class="back-btn" data-target="passenger-dashboard">Back</button></header>
     <main class="form-view">
       <div class="content-box">
         <div class="type-sel">
-          <input type="radio" name="btype" id="ac" value="ac" checked><label for="ac">AC</label>
-          <input type="radio" name="btype" id="nac" value="nonAc"><label for="nac">Non-AC</label>
+          <input type="radio" name="bt" id="ac" value="ac" checked><label for="ac">AC</label>
+          <input type="radio" name="bt" id="nac" value="nonAc"><label for="nac">Non-AC</label>
         </div>
-        <select id="route-sel"><option value="">-- Route --</option></select>
-        <select id="start-sel" disabled><option>-- Start --</option></select>
-        <select id="end-sel" disabled><option>-- End --</option></select>
-        <input type="number" id="t-count" value="1" min="1">
-        <div id="fare-res">Fare: ₹0</div>
-        <button id="buy-btn" class="submit-btn">Proceed</button>
+        <select id="r-sel"><option value="">-- Route --</option></select>
+        <select id="s-sel" disabled></select><select id="e-sel" disabled></select>
+        <input type="number" id="t-num" value="1" min="1">
+        <div id="fare-txt">Fare: ₹0</div>
+        <button id="book-btn" class="submit-btn">Generate Ticket</button>
       </div>
     </main>
   </div>
@@ -74,26 +91,17 @@
     <header><h1>Planner</h1><button class="back-btn" data-target="passenger-dashboard">Back</button></header>
     <main class="form-view">
       <div class="content-box">
-        <select id="p-start"></select>
-        <select id="p-end"></select>
-        <button id="search-btn" class="submit-btn">Find Bus</button>
-        <div id="p-results"></div>
+        <select id="plan-s"></select><select id="plan-e"></select>
+        <button id="search-bus" class="submit-btn">Search Routes</button>
+        <div id="plan-res"></div>
       </div>
     </main>
   </div>
 
-  <div id="crowd-page" class="page">
-    <header><h1>Crowd</h1><button class="back-btn" data-target="passenger-dashboard">Back</button></header>
-    <main class="form-view"><div class="content-box"><h3>Live Count</h3><div id="pax-val" class="stat">12</div></div></main>
-  </div>
-
-  <div id="tracking-page" class="page">
-    <header><h1>Live GPS</h1><button class="back-btn" data-target="passenger-dashboard">Back</button></header>
-    <main class="form-view"><div class="content-box"><i class="bi bi-geo-alt"></i><p>Fetching GPS...</p></div></main>
-  </div>
+  <div id="tracking-page" class="page"><header><h1>GPS</h1><button class="back-btn" data-target="passenger-dashboard">Back</button></header><main class="form-view"><div class="content-box"><i class="bi bi-geo-alt-fill" style="font-size:3rem; color:var(--primary)"></i><p id="track-msg">Scanning GPS...</p></div></main></div>
 
   <footer class="app-footer">
-    <p>Developed by **Vansh Jhingan** | BCA BVIMR</p>
+    <p>Developed by **Vansh Jhingan** | Portfolio 2026</p>
   </footer>
 
   <script src="script.js" defer></script>
