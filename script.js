@@ -31,9 +31,13 @@ function populateDropdown(selectElement, options) {
 }
 
 function updateStops() {
-    const routeId = document.getElementById('route-select').value;
+    const routeSelect = document.getElementById('route-select');
     const startSelect = document.getElementById('start-stop-select');
     const endSelect = document.getElementById('end-stop-select');
+    
+    if (!routeSelect || !startSelect || !endSelect) return;
+
+    const routeId = routeSelect.value;
     const route = busRoutes.find(r => r.id === routeId);
 
     if (route) {
@@ -54,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
         routeSelect.addEventListener('change', updateStops);
     }
 
-    const loginForm = document.getElementById('main-login-form');
     const loginTriggers = document.querySelectorAll('.login-trigger');
 
     loginTriggers.forEach(trigger => {
