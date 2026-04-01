@@ -1,161 +1,36 @@
-/* 1. SETUP & THEMES */
-:root { 
-  --primary: #007bff; 
-  --bg: #f4f7f6; 
-  --card: #fff; 
-  --text: #333; 
-  --border: #dee2e6;
-}
-body.dark { 
-  --bg: #1a1a1a; 
-  --card: #252525; 
-  --text: #f0f0f0; 
-  --border: #333;
-}
+:root { --p: #007bff; --bg: #f0f2f5; --glass: rgba(255, 255, 255, 0.85); --text: #1a1d20; --sh: 0 8px 32px rgba(0,0,0,0.1); }
+body.dark { --bg: #0f1113; --glass: rgba(30, 34, 38, 0.9); --text: #e9ecef; }
 
-body { 
-  margin: 0; 
-  font-family: 'Poppins', sans-serif; 
-  background: var(--bg); 
-  color: var(--text); 
-  overflow-x: hidden; 
-}
+body { margin: 0; font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); transition: 0.4s; overflow-x: hidden; }
+.page { display: none; min-height: 100vh; }
 
-.page { display: none; min-height: 100vh; width: 100%; }
+/* Login Styling */
+#login-page { display: flex; justify-content: center; align-items: center; background: linear-gradient(135deg, #007bff, #6610f2); }
+.glass-login { background: var(--glass); backdrop-filter: blur(10px); padding: 30px; border-radius: 25px; width: 90%; max-width: 400px; text-align: center; box-shadow: var(--sh); border: 1px solid rgba(255,255,255,0.2); position: relative; }
+.vj-badge { position: absolute; top: 15px; right: 15px; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--p); opacity: 0.6; }
+.main-logo { font-size: 3rem; color: var(--p); margin-bottom: 10px; display: block; }
 
-/* 2. LOGIN PAGE DESIGN (FIXED & CENTERED) */
-#login-page {  
-  display: flex;  
-  justify-content: center;  
-  align-items: center;  
-}
+.input-group .field { background: rgba(0,0,0,0.05); margin: 10px 0; border-radius: 12px; display: flex; align-items: center; padding: 0 15px; }
+.input-group input { background: none; border: none; padding: 12px; width: 100%; color: var(--text); outline: none; }
 
-.login-container {  
-  background: var(--card);  
-  padding: 30px;  
-  border-radius: 20px;  
-  width: 90%;  
-  max-width: 400px;  
-  text-align: center;  
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-  border: 1px solid var(--border);
-}
+.auth-options button { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--p); cursor: pointer; font-weight: 600; margin-top: 10px; }
+.primary { background: var(--p); color: #fff; }
+.split-btn { display: flex; gap: 8px; }
 
-.login-form input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  display: block;
-  background: var(--card);
-  color: var(--text);
-}
+/* Dashboard UI */
+.vj-header { background: var(--glass); backdrop-filter: blur(10px); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+.vj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 20px; max-width: 600px; margin: 0 auto; }
+.vj-card { background: var(--glass); padding: 20px 10px; border-radius: 20px; text-align: center; box-shadow: var(--sh); cursor: pointer; border: 1px solid transparent; transition: 0.2s; }
+.vj-card i { font-size: 2rem; color: var(--p); margin-bottom: 8px; display: block; }
+.vj-card h3 { font-size: 0.85rem; margin: 0; }
+.vj-card p { font-size: 0.7rem; opacity: 0.6; }
 
-.login-option {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 20px;
-}
+/* Admin & Ticket Components */
+.vj-container { padding: 20px; display: flex; justify-content: center; }
+.glass-card { background: var(--glass); padding: 25px; border-radius: 20px; width: 100%; max-width: 400px; box-shadow: var(--sh); }
+.stat-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
+.stat-val { font-size: 1.5rem; font-weight: bold; color: var(--p); }
+.vj-btn { width: 100%; padding: 14px; background: var(--p); color: #fff; border: none; border-radius: 12px; font-weight: 600; margin-top: 15px; }
 
-.login-trigger {
-  padding: 12px;
-  border: 1px solid var(--primary);
-  background: none;
-  color: var(--primary);
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.login-trigger:hover {
-  background: var(--primary);
-  color: #fff;
-}
-
-/* 3. HEADER & BANNER */
-header { 
-  background: var(--primary); 
-  color: #fff; 
-  padding: 1rem; 
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center; 
-}
-
-.banner-wrapper {  
-  width: 100%;  
-  height: 220px;  
-  background: #000; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.banner-wrapper img {  
-  max-width: 100%;  
-  max-height: 100%;  
-  object-fit: contain; 
-}
-
-/* 4. DASHBOARD GRIDS */
-.dashboard-grid {  
-  display: grid;  
-  grid-template-columns: repeat(2, 1fr);  
-  gap: 15px;  
-  padding: 20px;  
-  max-width: 600px;  
-  margin: 0 auto;  
-}
-
-.card { 
-  background: var(--card); 
-  padding: 20px; 
-  border-radius: 15px; 
-  text-align: center; 
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08); 
-  cursor: pointer; 
-  border: 1px solid var(--border); 
-}
-
-.card i { font-size: 2rem; color: var(--primary); display: block; margin-bottom: 8px; }
-.card h2 { font-size: 0.9rem; margin: 0; }
-
-/* 5. UTILS & MODALS */
-.submit-btn { 
-  width: 100%; 
-  padding: 12px; 
-  background: var(--primary); 
-  color: #fff; 
-  border: none; 
-  border-radius: 8px; 
-  font-weight: 600; 
-  cursor: pointer; 
-}
-
-.modal-overlay { 
-  position: fixed; 
-  inset: 0; 
-  background: rgba(0,0,0,0.85); 
-  display: none; 
-  justify-content: center; 
-  align-items: center; 
-  z-index: 1000; 
-}
-
-.modal-content { 
-  background: var(--card); 
-  padding: 30px; 
-  border-radius: 20px; 
-  text-align: center; 
-  max-width: 320px; 
-}
-
-.app-footer { 
-  text-align: center; 
-  padding: 20px; 
-  font-size: 0.9rem; 
-  color: #777; 
-}
+#map { border-bottom: 2px solid var(--p); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.app-footer { text-align: center; padding: 20px; font-size: 0.8rem; opacity: 0.5; }
