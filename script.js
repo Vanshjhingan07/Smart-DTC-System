@@ -1,3 +1,9 @@
+/**
+ * PROJECT: Smart DTC System v2.5
+ * AUTHOR: Vansh Jhingan (VJ-07)
+ * GITHUB: VanshJhingan07
+ * PROPERTY OF THE ARCHITECT. UNAUTHORIZED CLONES PROHIBITED.
+ */
 /* Smart DTC Core Logic v2.5
    Copyright (c) 2026 Vansh Jhingan (VanshJhingan07)
 */
@@ -48,6 +54,7 @@ function notify(title, msg, icon = 'bi-shield-check') {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+   console.log("%c SYSTEM INITIALIZED: Developed by Vansh Jhingan. (VJ-07 Core)", "color: #007bff; font-weight: bold;");
     vanshSystemCheck();
     document.getElementById('modal-close-btn').onclick = () => document.getElementById('alert-modal').style.display = 'none';
 
